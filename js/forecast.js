@@ -1,17 +1,14 @@
 $(function () { // call the function after the DOM is fully loaded
 
-
     var viewForcast = JSON.parse(localStorage.getItem('viewForcast'));
 
     $('.list-group-item').each(function () {
         $(this).find('.btn-link').click(function () {
 
-
             var citiId = $(this).attr('id');
 
             $("#forecast").html(viewForcast[citiId].forcastCode);
             //console.log(viewForcast[citiId].forcastCode);
-
         });
     });
 
@@ -34,28 +31,12 @@ $(function () { // call the function after the DOM is fully loaded
                 cnt: "5"
             },
 
-            // We store all of the retrieved data inside of an object called "response"
             success: function (forecast) {
-                //console.log(forecast.list[0].dt_txt) // For testing
 
-
-
-
-
-
-
-                //console.log(forcastDate.toString());
-
-                //console.log('Received forecast:', forecast) // For testing
-                //console.log(forecast) // For testing
-                //console.log(forecast.cod.list[0].main) // For testing
                 var cardWrapper = "";
-                //wf += "<h2>" + forecast.city.name + "</h2>"; // City (displays once)
-                //$.each(forecast.list, function (index, val) {
+
                 for (var i = 0; i < 5; i++) {
 
-
-                    //console.log(forecast.list[i].weather[0].icon) // For testing
                     var nextDay = new Date();
                     var addOne = 1;
                     var dd = String(nextDay.getDate() + i + addOne).padStart(2, '0');
@@ -87,9 +68,6 @@ $(function () { // call the function after the DOM is fully loaded
                     );
                 }
                 $(cardWrapper).appendTo("#forecast");
-
-                // 
-
 
                 var forcastHtmlCode = $("#forecast").html();
                 viewForcast = viewForcast || [];
